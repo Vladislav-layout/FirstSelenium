@@ -144,5 +144,4 @@ public class TestfirstTask {
         element = element.findElement(By.xpath("./../..//span"));
         assertEquals(errorMessage, element.getText(), "Сообщение некорректно.");
     }
-    //div[contains(@id, 'crm_business_trip_users-uid')]/../..//span
 }
