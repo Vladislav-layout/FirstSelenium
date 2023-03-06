@@ -111,11 +111,10 @@ public class TestfirstTask {
         loading();
 
         //Проверка появления сообщений о некорректно заполненных полях
-        checkErrorMessageAtField(driver.findElement(By.xpath("//div[contains(@id, 'crm_business_trip_users-uid')]")),
+        checkErrorMessageAtField(driver.findElement(By.xpath(String.format(fieldXPath, "div", "id", "crm_business_trip_users-uid"))),
                 "Список командируемых сотрудников не может быть пустым");
-        checkErrorMessageAtField(driver.findElement(By.xpath("//div[contains(@id, 'crm_business_trip_foreignUsers-uid')]")),
+        checkErrorMessageAtField(driver.findElement(By.xpath(String.format(fieldXPath, "div", "id", "crm_business_trip_foreignUsers-uid"))),
                 "Список командируемых сотрудников не может быть пустым");
-
     }
 
     @AfterEach
@@ -144,5 +143,4 @@ public class TestfirstTask {
         element = element.findElement(By.xpath("./../..//span"));
         assertEquals(errorMessage, element.getText(), "Сообщение некорректно.");
     }
-    //div[contains(@id, 'crm_business_trip_users-uid')]/../..//span
 }
