@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 
-public class TestfirstTask {
+public class TestFirstTask {
     WebDriver driver;
     WebDriverWait wait;
 
@@ -74,8 +74,8 @@ public class TestfirstTask {
         //Заполнение данных
         //Подразделение
         String subdivisionXPath = "//select[@name='crm_business_trip[businessUnit]']";
-        driver.findElement(By.xpath(subdivisionXPath)).click();
         String intDevDepXpath = "//option[text()='Отдел внутренней разработки']";
+        driver.findElement(By.xpath(subdivisionXPath)).click();
         WebElement intDevDep = driver.findElement(By.xpath(intDevDepXpath));
         String intDevDepString = driver.findElement(By.xpath(intDevDepXpath)).getText();
         assertTrue(intDevDep.isDisplayed());
