@@ -1,11 +1,10 @@
 package ru.ibs.framework.pages;
 
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import java.util.List;
 
 
 public class StartPage extends BasePage {
@@ -25,7 +24,7 @@ public class StartPage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Командировки']")
     private WebElement subMenu;
-
+    @Step("Проверка открытия главной страницы.")
     public StartPage checkOpenPage() {
         Assert.assertEquals("Текст заголовка некорректный.", title.getText(),"Панель быстрого запуска");
         return this;
@@ -42,12 +41,12 @@ public class StartPage extends BasePage {
         Assert.fail("Меню '" + nameMenu + "' не было найдено на стартовой странице!");
         return pageManager.getStartPage();
     }*/
-
+    @Step("Выбор пункта основного меню.")
     public StartPage selectBaseMenuByName () {
         waitUtilElementToBeClickable(baseMenu).click();
         return this;
     }
-
+    @Step("Выбор пунтка подменю.")
     public AllBusinessTripsPage selectSubMenuByName () {
         waitUtilElementToBeClickable(subMenu).click();
         return pageManager.getAllBusinessTripsPage();

@@ -1,5 +1,6 @@
 package ru.ibs.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -62,29 +63,29 @@ public class CreateTripPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='loader-content']")
     private WebElement loader;
-
+    @Step("Проверка открытия страницы создания командировки.")
     public CreateTripPage checkOpenPage() {
         Assert.assertEquals("Заголовок отсутсвует/не соответствует требуемому.", title.getText(),
                 "Создать командировку");
         return pageManager.getCreateTripPage();
     }
-
+    @Step("Клик по полю 'Подразделение'.")
     public CreateTripPage clickSubDivision() {
         subdivision.click();
         return this;
     }
-
+    @Step("Выбор подразделения из выпадающего списка.")
     public CreateTripPage chooseSubdivisions() {
         assertTrue(subdivisions.isDisplayed());
         subdivisions.click();
         return this;
     }
-
+    @Step("Клик по ссылке 'Открыть список' для поля Выбрать организацию из списка.")
     public CreateTripPage organisationOpening () {
         waitUtilElementToBeClickable(organisationHref).click();
         return this;
     }
-
+    @Step("Выбор организации из выпадающего списка.")
     public CreateTripPage chooseOrganization(String organisations) {
         specifyOrganization.click();
         waitUtilElementToBeClickable(organisation).click();
@@ -99,11 +100,12 @@ public class CreateTripPage extends BasePage{
         Assert.fail("Подразделение с текстом '" + organisations + "' не найдено.");
         */
     }
-
+    @Step("Активация чекбоса 'Заказ билетов'.")
     public CreateTripPage checkBoxClick() {
         waitUtilElementToBeClickable(ticketBookingCheckbox).click();
         return this;
     }
+    @Step("Заполняем поле '{nameField}' значением '{value}'")
     public CreateTripPage fillField(String nameField, String value) {
         WebElement element = null;
         switch (nameField) {
@@ -133,13 +135,13 @@ public class CreateTripPage extends BasePage{
                 value, element.getAttribute("value"));
         return this;
     }
-
+    @Step("Клик по кнопке 'Сохранить и закрыть'.")
     public CreateTripPage saveAndClose () {
         waitUtilElementToBeClickable(saveAndCloseButton).click();
         loading(loader);
         return this;
     }
-
+    @Step("Проверяем что под поле '{nameField}' отображается ошибка '{errMassage}'")
     public CreateTripPage checkErrorMessageAtField(String nameField, String errMassage) {
         WebElement element = null;
         switch (nameField) {

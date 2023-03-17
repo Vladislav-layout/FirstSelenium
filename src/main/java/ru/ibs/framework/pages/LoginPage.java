@@ -1,9 +1,8 @@
 package ru.ibs.framework.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.ibs.framework.managers.TestPropManager;
-import ru.ibs.framework.utils.PropConst;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -23,13 +22,14 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     private WebElement title;
 
+    @Step("Ввод логина  и пароля.")
     public LoginPage enterLoginAndPass(String login, String pass){
         wait.until(visibilityOf(loginWindow));
         usernameInput.sendKeys(login);
         passwordInput.sendKeys(pass);
         return this;
     }
-
+    @Step("Клик по кнопке 'Войти'.")
     public StartPage submitClick(){
         waitUtilElementToBeClickable(submitButton).click();
         waitUtilElementToBeVisible(title);

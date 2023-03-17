@@ -1,6 +1,8 @@
 package ru.ibs.tests;
 
-import org.junit.jupiter.api.Test;
+
+
+import org.junit.Test;
 import ru.ibs.framework.utils.PropConst;
 import ru.ibs.tests.base.BaseTests;
 
@@ -31,6 +33,6 @@ public class SecondTest extends BaseTests {
                 .checkErrorMessageAtField("Командированные сотрудники",
                 "Список командируемых сотрудников не может быть пустым")
                 .checkErrorMessageAtField("Внештатные сотрудники",
-                "Список командируемых сотрудников не может быть пустым");
+                "Список командируемых сотрудников не может быть пустым1");
     }
 }

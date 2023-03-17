@@ -23,19 +23,15 @@
 
         <selenium-java.version>3.141.59</selenium-java.version>
         <junit.version>4.13.1</junit.version>
+        <allure-junit4>2.13.5</allure-junit4>
+        <aspectj.version>1.9.7</aspectj.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>2.2</version>
-            <scope>test</scope>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -43,10 +39,9 @@
             <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>${allure-junit4}</version>
         </dependency>
     </dependencies>
 
@@ -74,8 +69,46 @@
                     <argLine>
                         -Xmx1024m
                         -Dfile.encoding=${encoding.type}
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <systemPropertyVariables>
+                    <allure.results.directory>${project.build.directory}/reports/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.ibs.framework.utils.MyAllureListener</value>
+                        </property>
+                    </properties>
                 </configuration>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>2.10.0</reportVersion>
+                    <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/reports/allure-reports</reportDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>allure-plugin</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

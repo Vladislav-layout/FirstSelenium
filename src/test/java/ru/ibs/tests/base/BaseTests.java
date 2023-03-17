@@ -1,7 +1,9 @@
 package ru.ibs.tests.base;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import ru.ibs.framework.managers.DriverManager;
 import ru.ibs.framework.managers.InitManager;
 import ru.ibs.framework.managers.PageManager;
@@ -13,14 +15,18 @@ public class BaseTests {
     protected PageManager pageManager = PageManager.getInstance();
     protected TestPropManager propManager = TestPropManager.getInstance();
 
-    @BeforeEach
-    public void before() {
+    @BeforeClass
+    public static void beforeAll() {
         InitManager.initFramework();
-        driverManager.getDriver().get(propManager.getProperty(PropConst.BASE_URL));
     }
 
-    @AfterEach
-    public void after() {
+    @Before
+    public void beforeEach() {
+        driverManager.getDriver().get(TestPropManager.getInstance().getProperty(PropConst.BASE_URL));
+    }
+
+    @AfterClass
+    public static void afterAll() {
         InitManager.quitFramework();
     }
 }
