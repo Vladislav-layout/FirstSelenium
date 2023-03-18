@@ -12,26 +12,17 @@ public class StartPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     private WebElement title;
-    /* Не работает, не видит пункты меню?
     @FindBy(xpath = "//ul[@class='nav nav-multilevel main-menu']/li/a/span[text()]")
     private List<WebElement> listBaseMenu;
-    */
-    @FindBy(xpath = "//ul[@class='nav nav-multilevel main-menu']/li/a/span[text()='Расходы']")
-    private WebElement baseMenu;
-
-    /* Не работает, не видит пункты меню?
     @FindBy(xpath = "//ul[@class = 'dropdown-menu menu_level_1']/li/a/span")
-    private List<WebElement> listSubMenu;*/
-
-    @FindBy(xpath = "//span[text()='Командировки']")
-    private WebElement subMenu;
+    private List<WebElement> listSubMenu;
 
     public StartPage checkOpenPage() {
         Assert.assertEquals("Текст заголовка некорректный.", title.getText(),"Панель быстрого запуска");
         return this;
     }
 
-/*    public StartPage selectBaseMenuByName(String nameMenu){
+    public StartPage selectBaseMenuByName(String nameMenu){
 
         for (WebElement menuItem : listBaseMenu) {
             if (menuItem.getText().trim().equalsIgnoreCase(nameMenu)) {
@@ -40,20 +31,10 @@ public class StartPage extends BasePage {
             }
         }
         Assert.fail("Меню '" + nameMenu + "' не было найдено на стартовой странице!");
+
         return pageManager.getStartPage();
-    }*/
-
-    public StartPage selectBaseMenuByName () {
-        waitUtilElementToBeClickable(baseMenu).click();
-        return this;
     }
-
-    public AllBusinessTripsPage selectSubMenuByName () {
-        waitUtilElementToBeClickable(subMenu).click();
-        return pageManager.getAllBusinessTripsPage();
-    }
-
-/*    public AllBusinessTripsPage selectSubMenuByName(String nameMenu){
+    public AllBusinessTripsPage selectSubMenuByName(String nameMenu){
 
         for (WebElement menuItem : listSubMenu) {
             if (menuItem.getText().trim().equalsIgnoreCase(nameMenu)) {
@@ -63,6 +44,5 @@ public class StartPage extends BasePage {
         }
         Assert.fail("Подменю '" + nameMenu + "' не было найдено в выпадающем списке.");
         return pageManager.getAllBusinessTripsPage();
-    }*/
-
+    }
 }
