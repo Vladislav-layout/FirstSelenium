@@ -90,15 +90,6 @@ public class CreateTripPage extends BasePage{
         specifyOrganization.click();
         waitUtilElementToBeClickable(organisation).click();
         return this;
-        /* Перехват клика...
-        for (WebElement organisation : listOrganisation) {
-            if(organisation.getText().equals(organisations)) {
-                organisation.click();
-            }
-            return;
-        }
-        Assert.fail("Подразделение с текстом '" + organisations + "' не найдено.");
-        */
     }
     @Step("Активация чекбоса 'Заказ билетов'.")
     public CreateTripPage checkBoxClick() {
