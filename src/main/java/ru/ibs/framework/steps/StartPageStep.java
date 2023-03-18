@@ -11,14 +11,14 @@ public class StartPageStep {
         pageManager.getStartPage().checkOpenPage();
     }
 
-    @И("^Выбор пункта основного меню 'Расходы'$")
-    public void selectBaseMenuByName() {
-        pageManager.getStartPage().selectBaseMenuByName();
+    @И("^Выбор пункта основного меню \"(.+)\"$")
+    public void selectBaseMenuByName(String nameMenu) {
+        pageManager.getStartPage().selectBaseMenuByName(nameMenu);
     }
 
-    @И("^Выбор пункта подменю 'Командировки'$")
-    public void selectSubMenuByName() {
-        pageManager.getStartPage().selectSubMenuByName();
+    @И("^Выбор пункта подменю \"(.+)\"$")
+    public void selectSubMenuByName(String nameMenu) {
+        pageManager.getStartPage().selectSubMenuByName(nameMenu);
     }
 
 }

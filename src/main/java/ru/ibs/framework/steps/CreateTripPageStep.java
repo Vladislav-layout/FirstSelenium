@@ -2,7 +2,6 @@ package ru.ibs.framework.steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.И;
-import java.util.HashMap;
 import ru.ibs.framework.managers.PageManager;
 
 public class CreateTripPageStep {
